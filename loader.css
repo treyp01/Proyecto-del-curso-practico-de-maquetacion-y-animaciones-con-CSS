@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;700&display=swap');/*esto es el url de los tipos de letras*/
+
+:root{
+    --yellow:#ffcf00;
+    --red:#d01012;
+    --blue:#1187ba;
+
+}
+.body{
+    font-family: 'Lato', sans-serif;  /*esto es para el tipo de letra que vamsos a utlilizar*/
+    height: 100vh; /*para poner 100% a nivel de ancho*/
+    margin: 0; /*quitamos el margen por defecto*/
+    overflow: hidden;/*para que no se salga cualquier elemento de nuestra pantalla*/
+
+}
+.page{
+    position: relative;
+    height: 100vh;
+    width: 100%;
+}
+.container{
+    position: absolute;
+    z-index: 1;
+
+    display: grid;  /*creamos la grid */
+    grid-template-columns: 55% 45%; /*le ponemos el respectivo espacio que va a llevar las respectivas columnas*/
+    grid-template-rows: 20% 50% 30%;/*le ponemos el respectivo espacio que va a llevar las respectivas filas*/
+    grid-template-areas: "nav      aside"/*organizamos las areas que va a ocupar cada espacio*/
+                         "section  aside"
+                         "footer   aside";
+    height: 100%;
+    width: 100%;
+}
+.navbar{
+    background: lightpink;
+    grid-area: nav;
+    display: flex;
+
+}
+.navbar__content{
+    /*vamosaubicarnuestroselementosRECORDEMOSQUECONDISPLAYFLEXSEUBICANUNOALLADODELOTROPORDEFECTO*/display: flex;
+    /**/align-items: center;
+    /*paraalinearloenelcentro*/width: 100%;
+    padding: 0 0 0 80px;
+    animation: 2s navbar 0.5s ease-in-out;/*le ponemos la animacion luego un el tiempo que se va a demorar despues un nombre cualquiera en este caso navbar despues el time y el tiempo que se demore y por ultimo la aceleracion */
+    
+}
+@keyframes navbar{
+    0%{
+        transform: translateY(-200px);/*trasladacion de nuestro navbar en y recordando que el inicial es 0*/
+    }
+
+    100%{
+        transform: translateY(0px);
+    }
+}
+.navbar__content img{
+    width: 50px;
+
+}
+.navbar__content ul{
+    display: flex;
+    justify-content: space-evenly;/*espace-evenly me permite que haya espacio entre los li*/
+    list-style: none; /*para quitarle los puntos ue tienen por defectos las listas*/
+    padding: 0;  /*con esto le quitamos el padding que trae por defecto lo ul*/
+    width: 450px;/*le ponemos un with para que tengan un espacio uno despues del otro y no se peguen los li*/
+
+}
+.navbar__content ul li a{/*vamos al a quitarle la sub raya a los a que estan dentro de li y a su vez de ul*/
+    color: var(--red);/*le ponemos color a la letra*/
+    font-weight: 300; /*esta es para ajustar el grosor de la letra*/
+    text-decoration: none; 
+}
+.main-content{
+    grid-area: section;
+    display: flex;
+    flex-direction: column;
+    /*estoesparaqueelcontenidosepongaunodebajodelotro*/justify-content: center;
+    padding: 80px ;
+    animation: 2s main-content 0.5s ease-in-out ;
+    -webkit-animation: 2s main-content 0.5s ease-in-out ;
+}
+.main-content p:first-child{/*esta pseudo clase first-child lo que me dice es que coja nuestro primer hijo p de main-content*/
+    font-size: 36px;/*font-size nos dice que le pongamos tamaño de 36px a nuestro p*/
+    font-weight: 300; /*le ponemos grosor a la letra del parrafo*/
+    margin: 0 0 -14px 44px;
+
+}
+.main-content h1{
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0 0 28px 0;
+}
+.main-content p:last-child{/*esta pseudo clase last-child lo que me dice es que coja nuestro segundo hijo p de main-content*/
+    font-weight: 100; /*le ponemos grosor a la letra del parrafo*/
+    width: 60%;/*esto es para que el tamaño del texto solo tenga el 60%*/
+
+    
+}
+@keyframes main-content{
+    0%{
+        transform: translateY(-600px);
+    }
+
+
+    100%{
+        transform: translateY(0px);
+    }
+    
+}
+.side-content{
+    background-color: palevioletred;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    align-items: center;
+    grid-area: aside;
+
+}
+.side-content p{
+    transform: rotate(-90deg);
+    font-size: 36px;
+    font-weight: 100;
+    grid-row: 1/2;
+    grid-column: 1/2;
+
+    opacity: 0;
+    animation-name: side-content-text;
+    animation-duration: 0.5s; /*esta propiedad es para el tiempo que se va a durar la animacion*/
+    animation-delay: 2.5s;/*esta propiedad es para que se espere hasta que se cargue el loader y las primeras animaciones*/
+    animation-timing-function: ease-in-out; /*esta propiedad es para la aceleracion de la animacion*/
+    animation-fill-mode: forwards;/*esta es para cuando termine la animacion se quede en el ultimo estado*/
+}
+@keyframes side-content-text {
+    0%{
+        opacity: 0;
+    }
+    100%{
+       opacity: 1; 
+    }
+    
+}
+.side-content img:hover{
+    cursor: pointer;
+    transform: translateY(-20px) scale(1.1);
+    transition: transform 0.3s ease-in-out;
+    
+}
+
+.side-content img{
+    width: 100%;
+    grid-column: 2/6;
+    grid-row: 1/2;
+    animation: 2s side-content-img 0.5s ease-in-out  ;
+    
+}
+@keyframes side-content-img {
+    0%{
+        transform: translateX(600px);
+    }    
+
+    100%{
+       transform: translateX(0px);
+    }
+    
+}
+.side-content div{
+    background: var(--yellow);
+
+    grid-column: 4/7;
+    grid-row: 1/2;
+    height: 100%;
+}
+.footer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    background: var(--yellow);
+    border-radius: 0 80px 0 0;
+    
+    transform: translateY(100%);  /*es para que tengan un valor inicial y de hay poder hacer la transiccion*/
+    animation-name: footer;
+    animation-duration: 0.5s;
+    animation-delay: 2.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+@keyframes footer{
+    0%{
+        transform: translateY(100%);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
+.footer div{
+    background: var(--blue);
+    width: 130px;
+    height: 50%;
+    border-radius: 80px 80px 0 0;
+    display: flex;
+    justify-content: center;
+}
+.footer div:hover{
+   cursor: pointer;
+   transform: translateY(-20px) scale(1.1);
+   transition: transform 0.3s ease-in-out;
+}
+
+
+.footer div img{
+    width: 190px;
+    position: absolute;
+    bottom: 30px;
+    transform: translateY(0px) scale(1);
+    transition: transform 0.3s ease-in-out;
+  
+}
+
+.loader{
+    background: pink;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 3;
+    animation: loader 0.5s linear forwards;
+        /*animamosparaquesequedeenblancolapantalla2segundosyfinalmentequedeensuestadoinicial(linearforwards)*/    
+    
+}
+
+/*La propiedad CSS opacity define la transparencia de un elemento, esto es, en qué grado se superpone el fondo al elemento*/
+@keyframes loader{
+    0%{
+        opacity:1;
+        visibility: visible;
+        /*visibility : controla la visibilidad del elemento, visible o no, pero no afecta a como el navegador representa la caja. Por tanto, visibility: hidden esconde el elemento pero el espacio que ocupa sigue representándose*/
+    }
+    95%{
+        opacity: 1;
+        visibility: visible;
+    }
+    100%{
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+.loader div{
+    background: rebeccapurple;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 10px;
+    transform: scale(0);
+    animation: scaling 2s ease-in-out infinite ;
+    
+}
+.loader div:nth-child(1){       /*esto es para que la animacion de las bolas sea una despues de la otra*/
+    animation-delay: 0.2s;      /*estos son los segundos donde comienza la animacion de la primera bola*/
+}
+.loader div:nth-child(2){
+    animation-delay: 0.4s;      /*esto es de la segunda bola*/ 
+}
+.loader div:nth-child(1){
+    animation-delay: 0.6s;      /*tercera bola*/
+}
+@keyframes scaling{  /*a función CSS scale() define una transformación que modifica el tamaño de un elemento en el plano 2D. Debido a que la cantidad de escalado está definida por un vector, puede cambiar el tamaño de la dimensiones horizontal y vertical a diferentes escalas*/
+    0%, 100%{
+        transform: scale(0.2);  /* es para transformar o modificar el espacio de las escalas*/
+    }   
+
+    40%{
+        transform: scale(1);
+}
+    50%{
+        transform: scale(1);  
+    }
+}
+.visible{
+    display: grid;
+
+}
+.hidden{
+    display: none;
+}
+.modal{
+    /*width: 100%;*/
+    height: 100%;
+    background: rgb(0, 0, 0,0.9);
+    position: absolute;
+    z-index: 4;          
+    display: grid;
+    place-items: center;
+} 
+.modal--content{
+    background: white;
+    width: 50%;
+    height: 50%;
+
+} 
